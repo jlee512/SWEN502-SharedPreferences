@@ -40,4 +40,12 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="220dp" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Hello World App"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="329dp" />
+
 </android.support.constraint.ConstraintLayout>

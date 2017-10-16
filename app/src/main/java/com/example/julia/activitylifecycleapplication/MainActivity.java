@@ -1,5 +1,6 @@
 package com.example.julia.activitylifecycleapplication;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,23 +17,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         Log.d("START", "Application started");
-
-        Button button = (Button)findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener(){
-
-
-
-            @Override
-            public void onClick(View v) {
-                TextView text = (TextView) findViewById(R.id.changeText);
-                EditText text_input_field = (EditText) findViewById(R.id.editText);
-                String text_input = text_input_field.getText().toString();
-                text.setText(text_input);
-                v.setVisibility(View.GONE);
-                text_input_field.setVisibility(View.GONE);
-
-            }
-        });
     }
 
     @Override
@@ -81,6 +65,36 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("CREATE", "Application created");
 
+//        Add layout elements
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                TextView text = (TextView) findViewById(R.id.changeText);
+                EditText text_input_field = (EditText) findViewById(R.id.editText);
+                String text_input = text_input_field.getText().toString();
+                text.setText(text_input);
+                v.setVisibility(View.GONE);
+                text_input_field.setVisibility(View.GONE);
+
+            }
+        });
+
+        Button open_app_button = (Button) findViewById(R.id.button2);
+        open_app_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent launchHelloWorld = getPackageManager().getLaunchIntentForPackage("com.example.julia.myapplication");
+                if (launchHelloWorld != null) {
+                    startActivity(launchHelloWorld);
+                }
+            }
+        });
+
+
+//        Load Shared Preferences
         SharedPreferences sharedPreferences = getSharedPreferences("My Preferences", 0);
         String text = sharedPreferences.getString("persist", null);
 
